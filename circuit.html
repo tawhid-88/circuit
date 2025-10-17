@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IC Wiring Diagram (4073/4075/7404)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+
+        svg {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .label {
+            font-size: 16px;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+
+        .pin-label {
+            font-size: 10px;
+            font-family: monospace;
+            fill: #555;
+        }
+
+        .ic-label {
+            font-size: 16px;
+            font-family: 'Courier New', Courier, monospace;
+            fill: white;
+            font-weight: bold;
+        }
+
+        .ic-body {
+            fill: #333;
+            stroke: #000;
+            stroke-width: 1;
+        }
+
+        .wire {
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        .wire-a {
+            stroke: #e63946;
+        }
+
+        .wire-b {
+            stroke: #2a9d8f;
+        }
+
+        .wire-c {
+            stroke: #e9c46a;
+        }
+
+        .wire-internal {
+            stroke: #6c757d;
+        }
+
+        .wire-power {
+            stroke: #f4a261;
+        }
+
+        .wire-gnd {
+            stroke: #212529;
+        }
+
+        .dot {
+            stroke-width: 1;
+            stroke: #000;
+        }
+
+        .dot-a {
+            fill: #e63946;
+        }
+
+        .dot-b {
+            fill: #2a9d8f;
+        }
+
+        .dot-c {
+            fill: #e9c46a;
+        }
+
+        .dot-internal {
+            fill: #6c757d;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>IC Diagram for: F = A'B'C' + A'BC' + ABC'</h1>
+    <svg width="850" height="700" viewBox="0 0 850 700">
+        <!-- Power Rails -->
+        <line x1="10" y1="20" x2="840" y2="20" class="wire wire-power" />
+        <text x="15" y="40" class="label" fill="#f4a261">+5V</text>
+        <line x1="10" y1="680" x2="840" y2="680" class="wire wire-gnd" />
+        <text x="15" y="670" class="label" fill="#212529">GND</text>
+
+        <!-- ICs -->
+        <g id="ic-7404">
+            <rect x="250" y="70" width="100" height="180" rx="5" class="ic-body" />
+            <text x="300" y="165" class="ic-label" text-anchor="middle">7404</text>
+            <text x="240" y="95" class="pin-label">1</text><text x="355" y="95" class="pin-label">14</text>
+            <text x="240" y="115" class="pin-label">2</text><text x="355" y="235" class="pin-label">7</text>
+            <text x="240" y="135" class="pin-label">3</text><text x="355" y="115" class="pin-label">13</text>
+            <text x="240" y="155" class="pin-label">4</text><text x="355" y="135" class="pin-label">12</text>
+            <text x="240" y="175" class="pin-label">5</text><text x="355" y="155" class="pin-label">11</text>
+            <text x="240" y="195" class="pin-label">6</text>
+        </g>
+        <g id="ic-4073">
+            <rect x="450" y="70" width="100" height="180" rx="5" class="ic-body" />
+            <text x="500" y="165" class="ic-label" text-anchor="middle">4073</text>
+            <text x="440" y="95" class="pin-label">1</text><text x="555" y="95" class="pin-label">14</text>
+            <text x="440" y="115" class="pin-label">2</text><text x="555" y="235" class="pin-label">7</text>
+            <text x="440" y="135" class="pin-label">3</text><text x="555" y="115" class="pin-label">13</text>
+            <text x="440" y="155" class="pin-label">4</text><text x="555" y="135" class="pin-label">12</text>
+            <text x="440" y="175" class="pin-label">5</text><text x="555" y="155" class="pin-label">11</text>
+            <text x="440" y="195" class="pin-label">6</text><text x="555" y="195" class="pin-label">10</text>
+            <text x="440" y="215" class="pin-label">8</text><text x="555" y="215" class="pin-label">9</text>
+        </g>
+        <g id="ic-4075">
+            <rect x="650" y="250" width="100" height="180" rx="5" class="ic-body" />
+            <text x="700" y="345" class="ic-label" text-anchor="middle">4075</text>
+            <text x="640" y="275" class="pin-label">1</text><text x="755" y="275" class="pin-label">14</text>
+            <text x="640" y="295" class="pin-label">2</text><text x="755" y="415" class="pin-label">7</text>
+            <text x="640" y="315" class="pin-label">8</text><text x="755" y="315" class="pin-label">9</text>
+        </g>
+
+        <!-- Power/GND to ICs -->
+        <path class="wire wire-power" d="M 350 95 V 20" /> <text x="360" y="60" class="pin-label">Vcc</text>
+        <path class="wire wire-gnd" d="M 350 235 V 680" />
+        <path class="wire wire-power" d="M 550 95 V 20" /> <text x="560" y="60" class="pin-label">Vdd</text>
+        <path class="wire wire-gnd" d="M 550 235 V 680" /> <text x="560" y="670" class="pin-label">Vss</text>
+        <path class="wire wire-power" d="M 750 275 V 20" />
+        <path class="wire wire-gnd" d="M 750 415 V 680" />
+
+        <!-- Inputs and Inverted Bus -->
+        <text x="50" y="100" class="label wire-a">A</text>
+        <line x1="50" y1="110" x2="50" y2="600" class="wire wire-a" />
+        <text x="80" y="100" class="label wire-b">B</text>
+        <line x1="80" y1="110" x2="80" y2="600" class="wire wire-b" />
+        <text x="110" y="100" class="label wire-c">C</text>
+        <line x1="110" y1="110" x2="110" y2="600" class="wire wire-c" />
+        <text x="150" y="130" class="label wire-internal">A'</text>
+        <line x1="150" y1="140" x2="150" y2="600" class="wire wire-internal" />
+        <text x="180" y="130" class="label wire-internal">B'</text>
+        <line x1="180" y1="140" x2="180" y2="600" class="wire wire-internal" />
+        <text x="210" y="130" class="label wire-internal">C'</text>
+        <line x1="210" y1="140" x2="210" y2="600" class="wire wire-internal" />
+
+        <!-- Inverter Logic -->
+        <path class="wire wire-a" d="M 50 135 H 250" />
+        <circle cx="50" cy="135" r="4" class="dot dot-a" />
+        <path class="wire wire-internal" d="M 150 135 H 350" />
+        <circle cx="150" cy="135" r="4" class="dot dot-internal" />
+        <path class="wire wire-b" d="M 80 175 H 250" />
+        <circle cx="80" cy="175" r="4" class="dot dot-b" />
+        <path class="wire wire-internal" d="M 180 175 H 350" />
+        <circle cx="180" cy="175" r="4" class="dot dot-internal" />
+        <path class="wire wire-c" d="M 110 215 H 250" />
+        <circle cx="110" cy="215" r="4" class="dot dot-c" />
+        <path class="wire wire-internal" d="M 210 215 H 350" />
+        <circle cx="210" cy="215" r="4" class="dot dot-internal" />
+
+        <!-- Term 1: A'B'C' -->
+        <path class="wire wire-internal" d="M 150 280 H 440" />
+        <circle cx="150" cy="280" r="4" class="dot dot-internal" /> <!-- A' to P1 -->
+        <path class="wire wire-internal" d="M 180 300 H 440" />
+        <circle cx="180" cy="300" r="4" class="dot dot-internal" /> <!-- B' to P2 -->
+        <path class="wire wire-internal" d="M 210 320 H 440" />
+        <circle cx="210" cy="320" r="4" class="dot dot-internal" /> <!-- C' to P8 -->
+        <path class="wire wire-internal" d="M 550 215 H 600 V 275 H 650" />
+        <circle cx="600" cy="275" r="4" class="dot dot-internal" /> <!-- Out P9 to OR P1-->
+
+        <!-- Term 2: A'BC' -->
+        <path class="wire wire-internal" d="M 150 360 H 440" />
+        <circle cx="150" cy="360" r="4" class="dot dot-internal" /> <!-- A' to P3 -->
+        <path class="wire wire-b" d="M 80 380 H 440" />
+        <circle cx="80" cy="380" r="4" class="dot dot-b" /> <!-- B to P4 -->
+        <path class="wire wire-internal" d="M 210 400 H 440" />
+        <circle cx="210" cy="400" r="4" class="dot dot-internal" /> <!-- C' to P5 -->
+        <path class="wire wire-internal" d="M 440 195 H 400 V 295 H 650" />
+        <circle cx="400" cy="295" r="4" class="dot dot-internal" /> <!-- Out P6 to OR P2-->
+
+        <!-- Term 3: ABC' -->
+        <path class="wire wire-a" d="M 50 440 H 550" />
+        <circle cx="50" cy="440" r="4" class="dot dot-a" /> <!-- A to P12 -->
+        <path class="wire wire-b" d="M 80 460 H 550" />
+        <circle cx="80" cy="460" r="4" class="dot dot-b" /> <!-- B to P13 -->
+        <path class="wire wire-internal" d="M 210 480 H 550" />
+        <circle cx="210" cy="480" r="4" class="dot dot-internal" /> <!-- C' to P11 -->
+        <path class="wire wire-internal" d="M 550 195 H 600 V 315 H 650" />
+        <circle cx="600" cy="315" r="4" class="dot dot-internal" /> <!-- Out P10 to OR P8-->
+
+        <!-- Final Output: F -->
+        <path class="wire wire-internal" d="M 750 315 H 820" />
+        <text x="825" y="320" class="label">F</text>
+    </svg>
+</body>
+
+</html>
